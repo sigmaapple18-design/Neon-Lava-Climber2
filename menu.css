@@ -1,0 +1,41 @@
+#Menu{
+    background-color: black;
+}
+.CenterButtons{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+button{
+    font-family:  'cascadia code';
+    cursor: pointer;
+}
+.hidden{
+    display: none !important;
+}
+.Settings button{
+    font-family:  'cascadia code';
+    cursor: pointer;
+}
+.Settings .content{
+    display: none;
+    position: absolute;
+    padding: 10px 15px;
+    box-shadow: 2px 2px 5px rgb(249, 249, 249);
+    color: rgb(255, 255, 254);
+    min-width: 80px;
+}
+.Settings .content button{
+    padding: 10px 10px;
+    display: block;
+    background-color: black;
+    color: white;
+}
+.Settings:hover .content{
+    display: block;
+}
+.Settings .content:hover button{
+    background-color: rgb(44, 44, 44);
+}
+
