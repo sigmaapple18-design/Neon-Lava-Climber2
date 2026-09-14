@@ -2,32 +2,33 @@
 const keys = {};
 
 addEventListener('keydown', (e) => {
-  // ignore repeated keydown auto-repeat if you like:
-  // if (e.repeat) return;
+  if (e.code.startsWith('Arrow')) e.preventDefault();
 
   keys[e.code] = true;
 
-  // prevent arrow keys from scrolling the page
-  if (e.code.startsWith('Arrow')) e.preventDefault();
+  if (
+    !e.repeat &&
+    (e.code === 'KeyW' || e.code === 'ArrowUp') &&
+    jumpsLeft > 0
+  ) {
+    vy = -16;
+    jumpsLeft--;
+  }
 
   updateVelocityFromKeys();
 });
 
 addEventListener('keyup', (e) => {
-  delete keys[e.code];
+  keys[e.code] = false;
   updateVelocityFromKeys();
 });
 
 function updateVelocityFromKeys() {
-  // reset
   vx = 0;
-  vy = 0;
 
-  // horizontal
-  if (keys['KeyD'] || keys['ArrowRight']) vx = 5;
-  if (keys['KeyA'] || keys['ArrowLeft']) vx = -5;
-
-  // vertical
-  if (keys['KeyW'] || keys['ArrowUp']) vy = -5;
-  if (keys['KeyS'] || keys['ArrowDown']) vy = 5;
+  if (keys['KeyD'] || keys['ArrowRight']) {
+    vx = 5;
+  } else if (keys['KeyA'] || keys['ArrowLeft']) {
+    vx = -5;
+  }
 }
