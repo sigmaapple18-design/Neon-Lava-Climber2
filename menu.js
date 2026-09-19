@@ -1,22 +1,30 @@
 document.addEventListener('DOMContentLoaded', () => {
-        const play = document.getElementById('play');
+    const play = document.getElementById('play');
     const menu = document.getElementById('Menu');
     const game = document.getElementById('gameCanvas');
-    if (play && menu && game) {
-    play.addEventListener('click', () => {
+    const gameOver = document.getElementById('gameOverScreen');
+    const playAgain = document.getElementById('playAgain');
+    const mainMenu = document.getElementById('mainMenu');
 
+    function beginGame() {
         menu.classList.add('hidden');
-
         game.classList.remove('hidden');
+        gameOver.classList.add('hidden');
 
         if (typeof startGame === 'function') {
             startGame();
-            console.log("Game loaded")
-        } else {
-            console.log("Game fucntion not found")
         }
-    
-});
+
+    }
+
+    if (play) play.addEventListener('click', beginGame);
+    if (playAgain) playAgain.addEventListener('click', beginGame);
+    if (mainMenu) {
+        mainMenu.addEventListener('click', () => {
+            gameOver.classList.add('hidden');
+            game.classList.add('hidden');
+            menu.classList.remove('hidden');
+        });
     }
 });
     function intro(){
