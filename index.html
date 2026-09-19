@@ -33,6 +33,15 @@
     </div>
             <canvas id="gameCanvas"; class="hidden"; width="1000"; height="1000" ></canvas>
 
+            <div id="gameOverScreen" class="game-over hidden">
+                <h1>Climb Failed</h1>
+                <p id="finalScore">Score: 0</p>
+                <div class="game-over-buttons">
+                    <button id="playAgain">Play Again</button>
+                    <button id="mainMenu">Main Menu</button>
+                </div>
+            </div>
+
          <script src="movement/inputHandler.js"></script>
         <script src="game/game.js"></script>
         <script src="menu.js"></script>
