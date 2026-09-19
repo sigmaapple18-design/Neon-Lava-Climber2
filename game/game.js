@@ -13,6 +13,9 @@ let cameraY = 0;
 let nextPlatformY = 0;
 let lavaY = 0;
 let gameOver = false;
+let startingY = 0;
+let highestY = 0;
+let score = 0;
 
 const gravity = 0.78; // gravity acceleration
 const playerW = 50;
@@ -90,6 +93,18 @@ function drawPlayer() {
   ctx.fillRect(x, y - cameraY, playerW, playerH);
 }
 
+function updateScore() {
+  highestY = Math.min(highestY, y);
+  score = Math.max(0, Math.floor((startingY - highestY) / 10));
+}
+
+function drawScore() {
+  ctx.fillStyle = 'white';
+  ctx.font = '24px Arial';
+  ctx.textAlign = 'left';
+  ctx.fillText(`Score: ${score}`, 20, 35);
+}
+
 function update() {
   if (!ctx || !canvas) return;
   if (gameOver) return;
@@ -100,6 +115,7 @@ function update() {
 
   vy += gravity;
   updatePlayer();
+  updateScore();
 
   for (const p of platforms) {
     p.y += platformSpeed;
@@ -142,6 +158,7 @@ function update() {
   }
 
   drawPlayer();
+  drawScore();
   requestAnimationFrame(update);
 }
 
@@ -184,11 +201,14 @@ function collision(previousY) {
     }
   }
 }
-    
+
 function gameOverScreen() {
   ctx.fillStyle = 'rgb(0, 255, 76)';
   ctx.font = '48px Arial';
-  ctx.fillText('Climb Failed', canvas.width / 2 - 140, canvas.height / 2);
+  ctx.textAlign = 'center';
+  ctx.fillText('Climb Failed', canvas.width / 2, canvas.height / 2);
+  ctx.font = '28px Arial';
+  ctx.fillText(`Score: ${score}`, canvas.width / 2, canvas.height / 2 + 45);
 }
 
 function startGame() {
@@ -198,6 +218,9 @@ function startGame() {
   // initialize player position ONCE here
   x = canvas.width / 2 - playerW / 2;
   y = canvas.height - 150;
+  startingY = y;
+  highestY = y;
+  score = 0;
   lavaY = canvas.height + 100;
   vx = 0;
   vy = 0;
