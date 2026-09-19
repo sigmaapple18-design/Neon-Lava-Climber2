@@ -203,17 +203,19 @@ function collision(previousY) {
 }
 
 function gameOverScreen() {
-  ctx.fillStyle = 'rgb(0, 255, 76)';
-  ctx.font = '48px Arial';
-  ctx.textAlign = 'center';
-  ctx.fillText('Climb Failed', canvas.width / 2, canvas.height / 2);
-  ctx.font = '28px Arial';
-  ctx.fillText(`Score: ${score}`, canvas.width / 2, canvas.height / 2 + 45);
+  const screen = document.getElementById('gameOverScreen');
+  const finalScore = document.getElementById('finalScore');
+
+  if (finalScore) finalScore.textContent = `Score: ${score}`;
+  if (screen) screen.classList.remove('hidden');
 }
 
 function startGame() {
   // make sure canvas is sized before initializing things
   resizeCanvas();
+
+  const screen = document.getElementById('gameOverScreen');
+  if (screen) screen.classList.add('hidden');
 
   // initialize player position ONCE here
   x = canvas.width / 2 - playerW / 2;
