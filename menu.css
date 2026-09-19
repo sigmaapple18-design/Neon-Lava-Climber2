@@ -14,6 +14,45 @@ button{
 .hidden{
     display: none !important;
 }
+.game-over{
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    background-color: rgba(0, 0, 0, 0.94);
+    color: rgb(0, 255, 76);
+    font-family: 'cascadia code';
+    text-align: center;
+    z-index: 10;
+}
+.game-over h1{
+    margin: 0;
+    font-size: clamp(42px, 8vw, 72px);
+}
+.game-over p{
+    margin: 0;
+    color: white;
+    font-size: 32px;
+}
+.game-over-buttons{
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.game-over-buttons button{
+    padding: 12px 20px;
+    background-color: black;
+    color: aqua;
+    border: 2px solid aqua;
+    font-size: 24px;
+}
+.game-over-buttons button:hover{
+    background-color: rgb(0, 55, 55);
+}
 .Settings button{
     font-family:  'cascadia code';
     cursor: pointer;
